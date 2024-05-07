@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useOnClickOutside } from "@/hooks/useOutsideClick";
 import SearchInput from '../SearchInput/SearchInput';
@@ -7,9 +7,24 @@ import Button from '../Button/Button';
 
 // const INITIAL_STATE = (options) => options.map((option) => ({ ...option, isSelected: false}))
 
-const Autocomplete = ({ options = [], labelKey = 'label', valueKey = 'value', onSelect = f => f, selectKey= 'isSelected' }) => {
-    // const [filteredOptions, setFilteredOptions] = useState(() => INITIAL_STATE(options));
-    const [filteredOptions, setFilteredOptions] = useState(options);
+function autoCompleteReducer(state, action) {
+    if (action.type === 'update') {
+        console.log('update called', action)
+      return action.payload;
+    }
+    throw Error('Unknown action.');
+}
+
+const Autocomplete = ({ options = [], labelKey = 'label', valueKey = 'value', onSelect = f => f, selectKey= 'isSelected', reducer = autoCompleteReducer }) => {
+    const [filteredOptions, setFilteredOptions] = useReducer(reducer, options);
+    // const [filteredOptions, setFilteredOptions] = useState(options);
+    // const isFirstRender = useRef(true)
+    // useEffect(() => {
+    //     isFirstRender.current = false
+    //     console.log('useEffect autocomplete', options, isFirstRender)
+        
+    //     if(!isFirstRender.current) setFilteredOptions({ type: 'update', payload: options})
+    // }, [options])
     const [open, setOpen] = useState(false)
 
     const openList = () => setOpen(true)
@@ -21,12 +36,14 @@ const Autocomplete = ({ options = [], labelKey = 'label', valueKey = 'value', on
     const onSearch = (value) => {
         console.log('onSearch', value);
         if (!value) {
-            setFilteredOptions(options)
+            setFilteredOptions({ type: 'update', payload: options})
+            // setFilteredOptions(options)
         } else {
             const filtered = options.filter(option =>
                 option[labelKey].toLowerCase().includes(value.toLowerCase())
             );
-            setFilteredOptions(filtered);
+            setFilteredOptions({ type: 'update', payload: filtered})
+            // setFilteredOptions(filtered);
         }
 
     };
@@ -35,12 +52,19 @@ const Autocomplete = ({ options = [], labelKey = 'label', valueKey = 'value', on
         // debugger
         const updatedSelectedOption = { ...selectedOption, [selectKey]: !selectedOption[selectKey] }
         // debugger
-        setFilteredOptions(filteredOptions.map((option) => {
+        // setFilteredOptions(filteredOptions.map((option) => {
+        //     if(option[labelKey] === selectedOption[labelKey]) {
+        //         return updatedSelectedOption
+        //     }
+        //     return option
+        // }))
+        const payload = filteredOptions.map((option) => {
             if(option[labelKey] === selectedOption[labelKey]) {
                 return updatedSelectedOption
             }
             return option
-        }))
+        })
+        setFilteredOptions({ type: 'update', payload })
         updatedSelectedOption[selectKey] && onSelect(updatedSelectedOption?.[valueKey], updatedSelectedOption)
         closeList()
     };
@@ -72,6 +96,7 @@ Autocomplete.propTypes = {
     valueKey: PropTypes.string,
     selectKey: PropTypes.string,
     onSelect: PropTypes.func,
+    reducer: PropTypes.func,
 }
 
 export default Autocomplete;

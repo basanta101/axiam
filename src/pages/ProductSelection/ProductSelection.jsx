@@ -1,5 +1,5 @@
 import ProductCard from "@/components/ProductCard/ProductCard"
-import { useState } from "react"
+import { useState, useReducer } from "react"
 import { PRODUCTS } from "./product.constants"
 import Autocomplete from "@/components/AutoComplete/AutoComplete"
 import { SELECT_KEY, VALUE_KEY, LABEL_KEY } from "@/constants/autocomplete.constants"
@@ -10,23 +10,29 @@ import './ProductSelection.scss'
 // const LABEL_KEY = 'label'
 // const VALUE_KEY = 'value'
 
+function autoCompleteReducer(state, action) {
+  if (action.type === 'update') {
+      console.log('update called', action)
+    return action.payload;
+  }
+  throw Error('Unknown action.');
+}
+
 const INITIAL_STATE = (options) => options.map((option) => ({ ...option, isSelected: false }))
 const ProductSelection = () => {
-  const [selectedProducts, updateSelectedProducts] = useState(() => INITIAL_STATE(PRODUCTS))
-  // const [selectedProducts, updateSelectedProducts] = useState([])
+  const [selectedProducts, updateSelectedProducts] = useReducer(autoCompleteReducer, INITIAL_STATE(PRODUCTS));
+  // const [selectedProducts, updateSelectedProducts] = useState(() => INITIAL_STATE(PRODUCTS))
 
   const onSelect = (valueKey, selectedOption) => {
-    console.log('onSelect', selectedOption)
-    updateSelectedProducts(selectedProducts.map((product) => product[VALUE_KEY] === valueKey ? selectedOption: product))
-    // updateSelectedProducts([...selectedProducts, option])
+    const payload = selectedProducts.map((product) => product[VALUE_KEY] === valueKey ? selectedOption: product)
+    updateSelectedProducts({ type: 'update', payload})
+    // updateSelectedProducts(selectedProducts.map((product) => product[VALUE_KEY] === valueKey ? selectedOption: product))
   }
 
   // the label key has to come from a constant
   const onRemoveProduct = (product) => {
     const newListOfProducts = selectedProducts.map((selectedProduct) => product.label === selectedProduct.label ? { ...selectedProduct, [SELECT_KEY]: !selectedProduct[SELECT_KEY] } : selectedProduct)
-    // const newListOfProducts = selectedProducts.filter((selectedProduct) => product.label !== selectedProduct.label)
-
-    updateSelectedProducts(newListOfProducts)
+    updateSelectedProducts({ type: 'update', payload: newListOfProducts})
   }
 
   return (
@@ -42,7 +48,7 @@ const ProductSelection = () => {
             <div className="f-14 ">Search to quickly add products your team uses today.</div>
             <div className="f-14 m-b-24 ">You'll be able to add as many as you need later but for now let's add four</div>
           </div>
-          <Autocomplete options={selectedProducts} onSelect={onSelect} valueKey={VALUE_KEY} selectKey={SELECT_KEY} labelKey={LABEL_KEY} />
+          <Autocomplete options={selectedProducts} onSelect={onSelect} valueKey={VALUE_KEY} selectKey={SELECT_KEY} labelKey={LABEL_KEY} reducer={autoCompleteReducer} />
         </div>
       </div>
     </section>)

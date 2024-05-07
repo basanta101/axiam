@@ -1,0 +1,48 @@
+.flex {
+    display: flex;
+}
+
+.flex-jc {
+    justify-content: center;
+}
+
+.flex-js {
+    justify-content: space-around;
+}
+
+.flex-jb {
+    justify-content: space-between;
+}
+
+.flex-ac {
+    align-items: center;
+}
+
+.flex-c {
+    @extend .flex;
+    @extend .flex-jc;
+    @extend .flex-ac;
+}
+
+.flex-cc {
+    @extend .flex-c;
+    flex-direction: column;
+}
+
+
+.flex-1 {
+    flex: 1;
+}
+
+
+//=== grid styling ===
+
+.grid-container {
+    @include grid-layout;
+}
+
+.box-shadow {
+    -webkit-box-shadow: -6px 8px 18px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: -6px 8px 18px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: -6px 8px 18px 0px rgba(0, 0, 0, 0.1);
+}

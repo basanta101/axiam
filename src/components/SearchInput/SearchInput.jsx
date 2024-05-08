@@ -29,7 +29,7 @@ const SearchInput = ({ onSearch = f => f, onFocus = f => f, placeholder = '', cl
 
     return <div className={`wrap bg-anti-flash-white ${isActive ?'focus' :'' } ${classes}`} onClick={handleClick}>
         <Icon icon={ICON_TYPE.SEARCH} />
-        <input ref={inputRef} type='text' placeholder={placeholder} onChange={onChange} value={searchText} onBlur={onBlur}/>
+        <input className='flex-1' ref={inputRef} type='text' placeholder={placeholder} onChange={onChange} value={searchText} onBlur={onBlur}/>
     </div>
 }
 

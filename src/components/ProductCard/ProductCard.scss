@@ -1,32 +1,25 @@
 .product-wrap {
-  // max-width: 600px;
   .grid-container {
-    max-width: 460px;
+    max-width: 395px;
   }
-  
-  .default-view-wrap {
-    // padding: 24px;
 
+  .default-view-wrap {
     .btn-wrap {
       border: none;
-      // padding: 12px;
     }
   }
 
   .preview-icon {
     height: 100px;
     width: 100px;
-    // border: 1px solid red;
 
     .icon-wrap {
-      // border: 1px solid green;
       width: 50%;
       height: 50%;
       flex: 1
     }
 
     .icon-text {
-      // border: 1px solid yellow;
       font-size: 16px;
     }
   }

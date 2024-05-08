@@ -1,0 +1,6 @@
+@import '../../styles/_variable.scss';
+
+.disabled {
+    background: $grey0 !important;
+    color: $grey-text !important;
+}

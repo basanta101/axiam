@@ -2,10 +2,22 @@
     background: none;
 }
 
+.bg-white {
+    background: $white;
+}
+
 .bg-grey0 {
     background: $grey0;
 }
 
 .bg-anti-flash-white {
     background: $anti-flash-white;
+}
+
+.bg-purple-dark {
+    background: $purple-dark;
+}
+
+.badge-gradient {
+    background: linear-gradient(224deg, rgb(248, 113, 151) 0%, rgb(139, 102, 241) 100%);
 }

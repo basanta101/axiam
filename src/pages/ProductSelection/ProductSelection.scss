@@ -1,17 +1,21 @@
 .production-selection-wrap {
-    border: 1px solid red;
     flex-direction: column;
+
     @media (min-width: 768px) {
-        flex-direction: row; 
+        flex-direction: row;
     }
+
     max-width: 1000px;
+
     .dialog-wrap {
         max-width: 335px;
-        border: 1px solid yellow;
     }
 
     .right-wrap {
-        max-width: 335px;
-        border: 1px solid green;
-    } 
+        max-width: 306px;
+
+        @media (min-width: 600px) {
+            max-width: 335px;
+        }
+    }
 }

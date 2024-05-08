@@ -1,7 +1,20 @@
+@import '../../styles/_variable.scss';
+
 .auto-wrap {
-    // width: 320px;
-    border: 1px solid black;
     .list-wrap {
         top: 52px;
+
+        .list-item {
+            &:hover {
+                background-color: #aaa;
+                color: $black-text;
+            }
+
+            .icon-tick {
+                width: 16px;
+                height: 16px;
+            }
+
+        }
     }
 }

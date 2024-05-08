@@ -1,23 +1,22 @@
 @import '../../styles/variable';
 
 .wrap {
-    // background: #D3D3D3; 
     height: 36px;
-    // width: 320px;
     display: flex;
     padding: 4px 12px;
     border-radius: 4px;
     display: flex;
     align-items: center;
-    border: 1px solid red;
+
     input {
         background: none;
         padding: 0 12px;
         height: 100%;
 
     }
+
     &.focus {
-        border: 1px solid $purple;
+        outline: 1px solid $purple;
         background: none;
     }
 

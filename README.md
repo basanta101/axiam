@@ -4,10 +4,6 @@
 A simple demo of AutoComplete complete component in react.
 
 
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
 node v20.8.1
 ## Run Locally
 

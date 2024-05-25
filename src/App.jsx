@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from 'react'
 
 
 // todo : working one
+
 // const CountdownTimer = ({ startTimeInSeconds, size }) => {
 //   const [timeRemainingInSeconds, setTimeRemainingInSeconds] = useState(startTimeInSeconds);
 
@@ -69,7 +70,313 @@ import { useState, useEffect, useRef } from 'react'
 
 
 // export default CountdownTimer;
-const CountdownTimer = ({ startTimeInSeconds, size }) => {
+// const CountdownTimer = ({ startTimeInSeconds, size }) => {
+//   const [timeRemainingInSeconds, setTimeRemainingInSeconds] = useState(startTimeInSeconds);
+//   const circleRef = useRef(null);
+//   const styleRef = useRef(null);
+
+//   useEffect(() => {
+//     const decrementTimeRemaining = () => {
+//       setTimeRemainingInSeconds(prevTime => {
+//         if (prevTime > 0) {
+//           return prevTime - 1;
+//         } else {
+//           clearInterval(timer);
+//           return prevTime;
+//         }
+//       });
+//     };
+
+//     const timer = setInterval(decrementTimeRemaining, 1000);
+
+//     return () => {
+//       clearInterval(timer);
+//     };
+//   }, [startTimeInSeconds]);
+
+//   useEffect(() => {
+//     const radius = size / 2 - 2;  // Calculate radius for circle, with some padding
+//     const circumference = 2 * Math.PI * radius;
+
+//     if (circleRef.current) {
+//       circleRef.current.style.strokeDasharray = circumference;
+//       circleRef.current.style.strokeDashoffset = circumference;
+//     }
+
+//     const styleElement = document.createElement('style');
+//     styleElement.innerHTML = `
+//       @keyframes countdown-animation {
+//         from {
+//           stroke-dashoffset: 0;
+//         }
+//         to {
+//           stroke-dashoffset: ${circumference};
+//         }
+//       }
+//     `;
+//     if (styleRef.current) {
+//       styleRef.current.appendChild(styleElement);
+//     }
+//   }, [size]);
+
+//   const radius = size / 2 - 2;
+//   // const circumference = 2 * Math.PI * radius;
+
+//   return (
+//     <div className="countdown-timer" style={{ width: size, height: size }}>
+//       <div className="countdown-timer__circle" style={{ width: size, height: size }}>
+//         <svg width={size} height={size}>
+//           <circle
+//             ref={circleRef}
+//             r={radius}
+//             cx={size / 2}
+//             cy={size / 2}
+//             style={{
+//               animation: `countdown-animation ${startTimeInSeconds}s linear`,
+//             }}
+//           />
+//         </svg>
+//       </div>
+//       <div className="countdown-timer__text" style={{ top: size / 3.2, fontSize: size / 3.7 }}>
+//         {timeRemainingInSeconds}s
+//       </div>
+//       <div ref={styleRef}></div>
+//     </div>
+//   );
+// };
+
+// const CountdownTimer = ({ startTimeInSeconds, size }) => {
+//   const [timeRemainingInSeconds, setTimeRemainingInSeconds] = useState(startTimeInSeconds);
+//   const circleRef = useRef(null);
+//   const styleRef = useRef(null);
+
+//   useEffect(() => {
+//     const decrementTimeRemaining = () => {
+//       setTimeRemainingInSeconds(prevTime => {
+//         if (prevTime > 0) {
+//           return prevTime - 1;
+//         } else {
+//           clearInterval(timer);
+//           return prevTime;
+//         }
+//       });
+//     };
+
+//     const timer = setInterval(decrementTimeRemaining, 1000);
+
+//     return () => {
+//       clearInterval(timer);
+//     };
+//   }, [startTimeInSeconds]);
+
+//   useEffect(() => {
+//     const radius = size / 2 - 2;  // Calculate radius for circle, with some padding
+//     const circumference = 2 * Math.PI * radius;
+
+//     if (circleRef.current) {
+//       circleRef.current.style.strokeDasharray = circumference;
+//       circleRef.current.style.strokeDashoffset = circumference;
+//     }
+
+//     const styleElement = document.createElement('style');
+//     styleElement.innerHTML = `
+//       @keyframes countdown-animation {
+//         from {
+//           stroke-dashoffset: ${circumference};
+//         }
+//         to {
+//           stroke-dashoffset: 0;
+//         }
+//       }
+//     `;
+//     if (styleRef.current) {
+//       styleRef.current.appendChild(styleElement);
+//     }
+//   }, [size]);
+
+//   const radius = size / 2 - 2;
+//   const circumference = 2 * Math.PI * radius;
+
+//   return (
+//     <div className="countdown-timer" style={{ width: size, height: size }}>
+//       <div className="countdown-timer__circle" style={{ width: size, height: size }}>
+//         <svg width={size} height={size}>
+//           <circle
+//             ref={circleRef}
+//             r={radius}
+//             cx={size / 2}
+//             cy={size / 2}
+//             style={{
+//               animation: `countdown-animation ${startTimeInSeconds}s linear forwards`,
+//             }}
+//           />
+//         </svg>
+//       </div>
+//       <div className="countdown-timer__text" style={{ top: size / 3.2, fontSize: size / 3.7 }}>
+//         {timeRemainingInSeconds}s
+//       </div>
+//       <div ref={styleRef}></div>
+//     </div>
+//   );
+// };
+
+
+// const CountdownTimer = ({ startTimeInSeconds, size }) => {
+//   const [timeRemainingInSeconds, setTimeRemainingInSeconds] = useState(startTimeInSeconds);
+//   const circleRef = useRef(null);
+//   const styleRef = useRef(null);
+
+//   useEffect(() => {
+//     const decrementTimeRemaining = () => {
+//       setTimeRemainingInSeconds(prevTime => {
+//         if (prevTime > 0) {
+//           return prevTime - 1;
+//         } else {
+//           clearInterval(timer);
+//           return prevTime;
+//         }
+//       });
+//     };
+
+//     const timer = setInterval(decrementTimeRemaining, 1000);
+
+//     return () => {
+//       clearInterval(timer);
+//     };
+//   }, [startTimeInSeconds]);
+
+//   useEffect(() => {
+//     const radius = size / 2 - 2;  // Calculate radius for circle, with some padding
+//     const circumference = 2 * Math.PI * radius;
+
+//     if (circleRef.current) {
+//       circleRef.current.style.strokeDasharray = circumference;
+//       circleRef.current.style.strokeDashoffset = 0;
+//     }
+
+//     const styleElement = document.createElement('style');
+//     styleElement.innerHTML = `
+//       @keyframes countdown-animation {
+//         from {
+//           stroke-dashoffset: 0;
+//         }
+//         to {
+//           stroke-dashoffset: ${circumference};
+//         }
+//       }
+//     `;
+//     if (styleRef.current) {
+//       styleRef.current.appendChild(styleElement);
+//     }
+//   }, [size]);
+
+//   const radius = size / 2 - 2;
+//   const circumference = 2 * Math.PI * radius;
+
+//   return (
+//     <div className="countdown-timer" style={{ width: size, height: size }}>
+//       <div className="countdown-timer__circle" style={{ width: size, height: size }}>
+//         <svg width={size} height={size}>
+//           <circle
+//             ref={circleRef}
+//             r={radius}
+//             cx={size / 2}
+//             cy={size / 2}
+//             style={{
+//               animation: `countdown-animation ${startTimeInSeconds}s linear`,
+//             }}
+//           />
+//         </svg>
+//       </div>
+//       <div className="countdown-timer__text" style={{ top: size / 3.2, fontSize: size / 3.7 }}>
+//         {timeRemainingInSeconds}s
+//       </div>
+//       <div ref={styleRef}></div>
+//     </div>
+//   );
+// };
+
+
+// const CountdownTimer = ({ startTimeInSeconds, size }) => {
+//   const [timeRemainingInSeconds, setTimeRemainingInSeconds] = useState(startTimeInSeconds);
+//   const circleRef = useRef(null);
+//   const styleRef = useRef(null);
+
+//   useEffect(() => {
+//     const decrementTimeRemaining = () => {
+//       setTimeRemainingInSeconds(prevTime => {
+//         if (prevTime > 0) {
+//           return prevTime - 1;
+//         } else {
+//           clearInterval(timer);
+//           return prevTime;
+//         }
+//       });
+//     };
+
+//     const timer = setInterval(decrementTimeRemaining, 1000);
+
+//     return () => {
+//       clearInterval(timer);
+//     };
+//   }, [startTimeInSeconds]);
+
+//   useEffect(() => {
+//     const radius = size / 2 - 2;  // Calculate radius for circle, with some padding
+//     const circumference = 2 * Math.PI * radius;
+
+//     if (circleRef.current) {
+//       circleRef.current.style.strokeDasharray = circumference;
+//       circleRef.current.style.strokeDashoffset = circumference;
+//     }
+
+//     const styleElement = document.createElement('style');
+//     styleElement.innerHTML = `
+//       @keyframes countdown-animation {
+//         from {
+//           stroke-dashoffset: 0;
+//         }
+//         to {
+//           stroke-dashoffset: -${circumference};
+//         }
+//       }
+//     `;
+//     if (styleRef.current) {
+//       styleRef.current.appendChild(styleElement);
+//     }
+//   }, [size]);
+
+//   const radius = size / 2 - 2;
+//   const circumference = 2 * Math.PI * radius;
+
+//   return (
+//     <div className="countdown-timer" style={{ width: size, height: size }}>
+//       <div className="countdown-timer__circle" style={{ width: size, height: size }}>
+//         <svg width={size} height={size}>
+//           <circle
+//             ref={circleRef}
+//             r={radius}
+//             cx={size / 2}
+//             cy={size / 2}
+//             style={{
+//               animation: `countdown-animation ${startTimeInSeconds}s linear forwards`,
+//             }}
+//           />
+//         </svg>
+//       </div>
+//       <div className="countdown-timer__text" style={{ top: size / 3.2, fontSize: size / 3.7 }}>
+//         {timeRemainingInSeconds}s
+//       </div>
+//       <div ref={styleRef}></div>
+//     </div>
+//   );
+// };
+
+// import React, { useState, useEffect, useRef } from 'react'; 
+
+
+// TODO: working example
+const CountdownTimer = ({ startTimeInSeconds = 60, size = 52 }) => {
   const [timeRemainingInSeconds, setTimeRemainingInSeconds] = useState(startTimeInSeconds);
   const circleRef = useRef(null);
   const styleRef = useRef(null);
@@ -109,7 +416,7 @@ const CountdownTimer = ({ startTimeInSeconds, size }) => {
           stroke-dashoffset: 0;
         }
         to {
-          stroke-dashoffset: ${circumference};
+          stroke-dashoffset: -${circumference};
         }
       }
     `;
@@ -131,18 +438,20 @@ const CountdownTimer = ({ startTimeInSeconds, size }) => {
             cx={size / 2}
             cy={size / 2}
             style={{
-              animation: `countdown-animation ${startTimeInSeconds}s linear`,
+              animation: `countdown-animation ${startTimeInSeconds}s linear forwards`,
             }}
           />
         </svg>
       </div>
-      <div className="countdown-timer__text" style={{ top: size / 3.2, fontSize: size / 3.7 }}>
+      <div className="countdown-timer__text" style={{ fontSize: size / 3.7 }}>
         {timeRemainingInSeconds}s
       </div>
       <div ref={styleRef}></div>
     </div>
   );
 };
+
+// export default CountdownTimer;
 
 
 function App() {
@@ -161,7 +470,7 @@ function App() {
   return (
     <>
       hello
-      <CountdownTimer startTimeInSeconds={20} size={150} />
+      <CountdownTimer startTimeInSeconds={120} size={250} />
     </>
   )
 }
